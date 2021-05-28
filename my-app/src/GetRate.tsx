@@ -22,12 +22,11 @@ export default function GetRate() {
   };
 
   useEffect(() => {
-    convertCurrency("gbp", "eur");
+    convertCurrency("usd", "usd");
   });
 
   return (
     <div>
-      <br />
       <h1>{worth}</h1>
     </div>
   );
