@@ -1,7 +1,6 @@
 {
-  "name": "my-app",
+  "name": "convertisseur",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@types/node": "^12.20.13",
     "@types/react": "^17.0.6",
@@ -42,5 +41,5 @@
   "devDependencies": {
     "@types/node-fetch": "^2.5.10"
   },
-  "homepage": "https://virgile-ae.github.io/currencyConverter"
+  "homepage": "http://virgile-ae.github.io/currencyConverter/"
 }

@@ -62,7 +62,7 @@ export default function Selector() {
           placeholder="Accuracy"
           className="num"
           min={0}
-          max={16}
+          max={5}
           defaultValue={2}
           onChange={() => {
             const nAcc = document.getElementById("dp") as HTMLInputElement;

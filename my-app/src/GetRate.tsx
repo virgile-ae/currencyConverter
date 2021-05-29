@@ -11,25 +11,20 @@ interface IProps {
 export default function GetRate(props: IProps) {
   const [worth, setWorth] = useState<number>();
 
-  const getUsdTo = async (currency: string): Promise<number> => {
-    const apiKey = "492309f9595b2288cda297bfa46cfc88";
-    const url = "http://api.currencylayer.com/live";
-    const formattedCurrency = currency.toUpperCase();
+  const getConvertedCurrency = async (from: string, to: string): Promise<void> => {
+    const apiKey = "ce1b13705ed584726ed4";
+    const fFrom = from.toUpperCase();
+    const fTo = to.toUpperCase();
+    const url = `https://free.currconv.com/api/v7/convert?q=${fFrom}_${fTo}&compact=ultra&apiKey=${apiKey}`;
 
-    const response = await fetch(`${url}?access_key=${apiKey}`);
+    const response = await fetch(url);
     const formatted = await response.json();
-    const wantedVal: number = await formatted.quotes[`USD${formattedCurrency}`];
-    return wantedVal;
-  };
-
-  const convertCurrency = async (from: string, to: string): Promise<void> => {
-    const fromVal = await getUsdTo(from);
-    const toVal = await getUsdTo(to);
-    setWorth(parseFloat(((toVal / fromVal) * props.multiplier).toFixed(props.dp)));
+    const wantedVal: number = await formatted[`${fFrom}_${fTo}`];
+    setWorth(parseFloat((wantedVal * props.multiplier).toFixed(props.dp)));
   };
 
   useEffect(() => {
-    convertCurrency(props.from, props.to);
+    getConvertedCurrency(props.from, props.to);
   });
 
   return (
