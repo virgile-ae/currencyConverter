@@ -1,0 +1,30 @@
+input {
+  border: 0px;
+  padding-left: 0.75ch;
+  display: inline-block;
+  height: 2em;
+  width: 3em;
+  margin: 1ch;
+  border-radius: 0.5ch;
+}
+
+input[type="text"],
+input[type="number"] {
+  font-size: 2.5ch;
+  font-family: Roboto;
+}
+
+.num {
+  width: 6em;
+}
+
+label {
+  font-weight: 100;
+  font-size: 3.5ch;
+  display: block;
+  margin: 1ch;
+}
+
+.selector {
+  background: transparent;
+}

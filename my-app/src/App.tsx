@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import GetRate from "./GetRate";
+import Selector from "./Selector";
 
 export default function App() {
   return (
     <div className="App">
-      <GetRate />
+      <h1 className="title">CONVERTISSEUR</h1>
+      <Selector />
     </div>
   );
 }

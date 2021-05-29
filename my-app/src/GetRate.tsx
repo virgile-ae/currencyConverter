@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./GetRate.css";
 
-export default function GetRate() {
+interface IProps {
+  from: string;
+  to: string;
+  multiplier: number;
+  dp: number;
+}
+
+export default function GetRate(props: IProps) {
   const [worth, setWorth] = useState<number>();
 
   const getUsdTo = async (currency: string): Promise<number> => {
@@ -12,22 +19,22 @@ export default function GetRate() {
     const response = await fetch(`${url}?access_key=${apiKey}`);
     const formatted = await response.json();
     const wantedVal: number = await formatted.quotes[`USD${formattedCurrency}`];
-    return wantedVal.valueOf();
+    return wantedVal;
   };
 
   const convertCurrency = async (from: string, to: string): Promise<void> => {
     const fromVal = await getUsdTo(from);
     const toVal = await getUsdTo(to);
-    setWorth(toVal / fromVal);
+    setWorth(parseFloat(((toVal / fromVal) * props.multiplier).toFixed(props.dp)));
   };
 
   useEffect(() => {
-    convertCurrency("usd", "usd");
+    convertCurrency(props.from, props.to);
   });
 
   return (
-    <div>
-      <h1>{worth}</h1>
-    </div>
+    <h1>
+      {props.from.toUpperCase()} {props.multiplier} equals {props.to.toUpperCase()} {worth}
+    </h1>
   );
 }
